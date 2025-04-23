@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gemini Chat</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
@@ -15,7 +16,7 @@
             margin: 0;
             padding: 0;
         }
-    
+
         body {
             font-family: 'Google Sans', Roboto, Arial, sans-serif;
             background-color: #f8f9fa;
@@ -27,13 +28,13 @@
             padding-bottom: 100px;
             font-size: clamp(14px, 2vw, 16px);
         }
-    
+
         h1 {
             text-align: center;
             margin: 20px 0;
             font-size: clamp(1.5rem, 5vw, 2.5rem);
         }
-    
+
         .chat-container {
             max-width: 900px;
             width: 100%;
@@ -42,28 +43,28 @@
             flex: 1;
             overflow-y: auto;
         }
-    
+
         .message-card {
             border-radius: 10px;
             margin-bottom: 16px;
             padding: 12px 16px;
-            max-width: 75%;
+            max-width: 105%;
             word-wrap: break-word;
         }
-    
+
         .user-message {
             background-color: #e3f2fd;
             align-self: flex-end;
             margin-left: auto;
             text-align: right;
         }
-    
+
         .assistant-message {
             background-color: #f1f3f4;
             align-self: flex-start;
             margin-right: auto;
         }
-    
+
         .message-header {
             font-size: 0.9rem;
             font-weight: bold;
@@ -72,7 +73,7 @@
             align-items: center;
             gap: 6px;
         }
-    
+
         .input-container {
             position: fixed;
             bottom: 0;
@@ -84,7 +85,7 @@
             box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
             z-index: 100;
         }
-    
+
         .input-wrapper {
             max-width: 900px;
             margin: 0 auto;
@@ -93,7 +94,7 @@
             position: relative;
             flex-wrap: wrap;
         }
-    
+
         input[type="text"] {
             flex: 1;
             padding: 14px 60px 14px 20px;
@@ -106,13 +107,14 @@
             transition: all 0.3s ease;
             width: 100%;
         }
-    
+
         input[type="text"]:focus {
             border-color: #4285f4;
             box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
         }
-    
-        .send-button, .voice-button {
+
+        .send-button,
+        .voice-button {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
@@ -122,41 +124,51 @@
             font-size: 1.2rem;
             transition: transform 0.2s;
         }
-    
+
         .voice-button {
             right: 50px;
             color: #5f6368;
         }
-    
+
         .send-button {
             right: 15px;
             color: #4285f4;
         }
-    
+
         .voice-button.listening {
             color: #ea4335;
             animation: pulse 1.5s infinite;
         }
-    
+
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
-    
-        .send-button:hover, .voice-button:hover {
-            transform: scale(1.1);
+
+        .send-button:hover,
+        .voice-button:hover {
+            color: #6b6c6e;
         }
-    
-        .send-button:active, .voice-button:active {
-            transform: scale(0.95);
+
+        .send-button:active,
+        .voice-button:active {
+            color: rgb(60, 60, 164);
         }
-    
+
         .typing-indicator {
             display: flex;
             gap: 4px;
         }
-    
+
         .typing-dot {
             width: 8px;
             height: 8px;
@@ -164,57 +176,61 @@
             border-radius: 50%;
             animation: blink 1.2s infinite;
         }
-    
+
         .typing-dot:nth-child(2) {
             animation-delay: 0.2s;
         }
-    
+
         .typing-dot:nth-child(3) {
             animation-delay: 0.4s;
         }
-    
+
         @keyframes blink {
-            0%, 80%, 100% {
+
+            0%,
+            80%,
+            100% {
                 opacity: 0;
             }
+
             40% {
                 opacity: 1;
             }
         }
-    
+
         @media (max-width: 768px) {
             .message-card {
                 max-width: 85%;
             }
-    
+
             input[type="text"] {
                 padding: 12px 50px 12px 16px;
             }
-    
+
             .voice-button {
                 right: 45px;
             }
-    
+
             .send-button {
                 right: 10px;
             }
         }
-    
+
         @media (max-width: 480px) {
             .message-card {
                 max-width: 95%;
             }
-    
+
             .input-wrapper {
                 padding: 0 10px;
             }
-    
+
             h1 {
                 font-size: 1.75rem;
             }
         }
     </style>
-    
+
 </head>
 
 <body>
@@ -242,18 +258,21 @@
             <div class="message-content">
                 {% if response|escape != response %}
                 <pre><code class="language-python">{{ response|safe }}</code></pre>
+                <!-- Programming code will be highlighted -->
                 {% else %}
-                {{ response }}
+                <div>{{ response }}</div> <!-- Regular text will remain as it is -->
                 {% endif %}
             </div>
+
         </div>
         {% endif %}
     </div>
 
     <div class="input-container">
-        <form method="post" class="input-wrapper">
+        <form method="post" class="input-wrapper" id="chatForm">
             {% csrf_token %}
-            <input type="text" id="user_input" name="user_input" required value="{{ user_input }}" placeholder="Ask something..." autocomplete="off">
+            <input type="text" id="user_input" name="user_input" required value="{{ user_input }}"
+                placeholder="Ask something..." autocomplete="off">
             <button type="button" class="voice-button" id="voiceButton" aria-label="Voice input">
                 <i class="fas fa-microphone"></i>
             </button>
@@ -264,9 +283,35 @@
     </div>
 
     <script>
+        const form = document.getElementById('chatForm');
+        const input = document.getElementById('user_input');
+        const chatContainer = document.getElementById('chatContainer');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault(); // Stop normal form submission
+            const formData = new FormData(form);
+
+            // Send data using Fetch
+            fetch("", {
+                method: "POST",
+                body: formData,
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest"
+                }
+            })
+                .then(response => response.text())
+                .then(html => {
+                    document.open();
+                    document.write(html);
+                    document.close();
+                });
+
+            // Optional: clear the input field
+            input.value = "";
+        });
+
         function scrollToBottom() {
-            const container = document.getElementById('chatContainer');
-            container.scrollTop = container.scrollHeight;
+            chatContainer.scrollTop = chatContainer.scrollHeight;
         }
 
         document.addEventListener('DOMContentLoaded', function () {
@@ -276,16 +321,8 @@
             if (inputField) inputField.focus();
         });
 
-        document.querySelector('form').addEventListener('keydown', function (e) {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                this.submit();
-            }
-        });
-
         {% if user_input and not response %}
         document.addEventListener('DOMContentLoaded', function () {
-            const chatContainer = document.getElementById('chatContainer');
             const typingIndicator = document.createElement('div');
             typingIndicator.className = 'message-card assistant-message';
             typingIndicator.innerHTML = `
@@ -304,8 +341,6 @@
         {% endif %}
 
         const voiceButton = document.getElementById('voiceButton');
-        const userInput = document.getElementById('user_input');
-
         if ('webkitSpeechRecognition' in window) {
             const recognition = new webkitSpeechRecognition();
             recognition.continuous = false;
@@ -313,7 +348,7 @@
 
             recognition.onstart = () => voiceButton.classList.add('listening');
             recognition.onresult = event => {
-                userInput.value = event.results[0][0].transcript;
+                input.value = event.results[0][0].transcript;
                 voiceButton.classList.remove('listening');
             };
             recognition.onerror = () => voiceButton.classList.remove('listening');
@@ -330,5 +365,9 @@
             voiceButton.style.display = 'none';
         }
     </script>
+
+
+
 </body>
+
 </html>
