@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatAI Home</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <style>
+        nav {
+            background-color: #8fd1cd;
+            position: sticky;
+            top: 0px;
+        }
+
+        .home p {
+            text-align: center;
+            margin-top: 50px;
+            font-weight: bold;
+            color: #4664c6;
+        }
+
+        .home h2 {
+            text-align: center;
+            color: #4664c6;
+            font-size: 50px;
+            text-shadow: 0px 2px 5px #2f2e2e;
+
+        }
+
+        .custom-btn {
+            display: inline-block;
+            background-color: rgb(12, 77, 137);
+            color: white;
+            text-decoration: none;
+            padding: 35px 25px;
+            border-radius: 10px;
+            width: 300px;
+            height: 150px;
+            text-align: left;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .custom-btn h6 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .custom-btn p {
+            margin: 5px 0 0;
+            font-size: 14px;
+        }
+
+        .custom-btn:hover {
+            background-color: #116680;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            color: white;
+            text-decoration: none;
+        }
+        footer{
+            background-color: #f0f0f0;
+            margin-top: 250px;
+            padding: 50px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-light">
+        <a class="navbar-brand" href="#">
+            <img src="https://tse1.mm.bing.net/th/id/OIP.Q8XNSRhTo-wvMPnPtMWGxwAAAA?pid=ImgDet&w=184&h=163&c=7&dpr=1.3"
+                width="30" height="30" class="d-inline-block align-top" alt="">
+            ChatAI
+        </a>
+        <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#rightNav"
+            aria-controls="rightNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="rightNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Active</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="home">
+        <p>🎉Hello! I'm your ChatAI assistant. How can I help you today?</p>
+        <h2>ChatAI</h2>
+    </div>
+
+    <div class="container  d-flex flex-wrap justify-content-center">
+        <a href="{% url 'chatai' %}" class="custom-btn m-2">
+            <h6>Chat Now</h6>
+            <p>Start a conversation with ChatAI</p>
+        </a>
+        <a href="https://siddharthadevportfolio.onrender.com/" class="custom-btn m-2" target="_blank">
+            <h6>Meet the Creator</h6>
+            <p>Explore Siddhartha's work, projects, and tech journey</p>
+        </a>
+        
+    </div>
+    <footer class=" text-center">
+        &copy; 2025 Uppunuti Siddhartha. All rights reserved.
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+        integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
