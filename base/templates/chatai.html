@@ -258,9 +258,9 @@
             <div class="message-content">
                 {% if response|escape != response %}
                 <pre><code class="language-python">{{ response|safe }}</code></pre>
-                <!-- Programming code will be highlighted -->
+            
                 {% else %}
-                <div>{{ response }}</div> <!-- Regular text will remain as it is -->
+                <div>{{ response }}</div> 
                 {% endif %}
             </div>
 
@@ -271,8 +271,7 @@
     <div class="input-container">
         <form method="post" class="input-wrapper" id="chatForm">
             {% csrf_token %}
-            <input type="text" id="user_input" name="user_input" required value="{{ user_input }}"
-                placeholder="Ask something..." autocomplete="off">
+            <input type="text" id="user_input" name="user_input" required placeholder="Ask something..." autocomplete="off">
             <button type="button" class="voice-button" id="voiceButton" aria-label="Voice input">
                 <i class="fas fa-microphone"></i>
             </button>
@@ -288,27 +287,41 @@
         const chatContainer = document.getElementById('chatContainer');
 
         form.addEventListener('submit', function (e) {
-            e.preventDefault(); // Stop normal form submission
-            const formData = new FormData(form);
+    e.preventDefault(); // Stop normal form submission
+    const formData = new FormData(form);
 
-            // Send data using Fetch
-            fetch("", {
-                method: "POST",
-                body: formData,
-                headers: {
-                    "X-Requested-With": "XMLHttpRequest"
-                }
-            })
-                .then(response => response.text())
-                .then(html => {
-                    document.open();
-                    document.write(html);
-                    document.close();
-                });
+    // Send data using Fetch
+    fetch("", {
+        method: "POST",
+        body: formData,
+        headers: {
+            "X-Requested-With": "XMLHttpRequest"
+        }
+    })
+        .then(response => response.text())
+        .then(html => {
+            document.open();
+            document.write(html);
+            document.close();
 
-            // Optional: clear the input field
-            input.value = "";
-        });
+            // Clear the input field after the page is updated
+            input.value = ""; // Clear the input field after submission
+        })
+        .catch(error => console.error('Error:', error));
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    Prism.highlightAll();
+    scrollToBottom();
+    const inputField = document.getElementById('user_input');
+    if (inputField) inputField.focus();
+
+    // Check if input field is pre-filled
+    if (inputField && inputField.value === '') {
+        inputField.value = ''; // Ensure the input is empty
+    }
+});
+
 
         function scrollToBottom() {
             chatContainer.scrollTop = chatContainer.scrollHeight;
