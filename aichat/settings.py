@@ -126,3 +126,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 GEMINI_API_KEY = "AIzaSyCDoYNRjXhLSOy8Nrtt-zda3NrjK2Zdy1I"
+
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://chatbotsiddu.up.railway.app"
+]
+
